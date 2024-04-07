@@ -154,6 +154,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 24px;
+  height: 100%;
 `;
 
 const ContainerSortItems = styled.div`
@@ -182,7 +183,7 @@ const Card = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
-  width: 250px;
+  width: 100%;
   height: 100%;
   max-width: 400px;
   padding: 24px;

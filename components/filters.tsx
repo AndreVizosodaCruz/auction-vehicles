@@ -62,7 +62,6 @@ export default function Filters() {
     })
     setFiltersComponentKey(prevKey => prevKey + 1);
   }
-  console.log({ filtersComponent, modelList })
 
   return (
     <Container>
