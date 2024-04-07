@@ -1,6 +1,7 @@
 import type { AppProps } from "next/app";
 import { ThemeProvider, type DefaultTheme } from "styled-components";
 import GlobalStyle from "@/components/globalstyles";
+import { StateProvider } from '../utils/store';
 
 const theme: DefaultTheme = {
   colors: {
@@ -11,11 +12,11 @@ const theme: DefaultTheme = {
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <>
+    <StateProvider>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <Component {...pageProps} />
       </ThemeProvider>
-    </>
+    </StateProvider>
   );
 }
