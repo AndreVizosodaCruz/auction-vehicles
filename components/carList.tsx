@@ -52,13 +52,14 @@ export default function CarList() {
 
   const toggleFavorite = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, id: number) => {
     e.preventDefault();
-    const updatedItems = vehicles.map(item => {
-      if (item.id === id) {
-        return { ...item, favourite: !item.favourite };
-      }
-      return item;
+    setVehicles(prevVehicles => {
+      return prevVehicles.map(vehicle => {
+        if (vehicle.id === id) {
+          return { ...vehicle, favourite: !vehicle.favourite };
+        }
+        return vehicle;
+      });
     });
-    setVehicles(updatedItems);
   }
 
   return (
@@ -71,12 +72,13 @@ export default function CarList() {
             defaultValue={sortBy}
             arr={sortByOptions}
             changeEvent={(value) => setSortBy(value as SortBy)}
+            dataTestId="sorting-dropdown"
           />
         </ContainerSortItems>
         <Main>
           {slicedData.length > 0 ?
             slicedData.map((vehicle) => (
-              <LinkCard href={`/detail/${vehicle.id}`} key={vehicle.id} >
+              <LinkCard href={`/detail/${vehicle.id}`} key={vehicle.id} data-testid={`vehicle-${vehicle.id}`}>
                 <Card>
                   <Image
                     src={Car}
@@ -85,7 +87,7 @@ export default function CarList() {
                     alt={`${vehicle.make}-${vehicle.model}-${vehicle.year}`}
                     priority
                   />
-                  <FavoriteButtonStyled onClick={(e) => toggleFavorite(e, vehicle.id)}>
+                  <FavoriteButtonStyled onClick={(e) => toggleFavorite(e, vehicle.id)} data-testid={`favorite-button-${vehicle.id}`}>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
                       <path fill={vehicle.favourite ? "red" : "gray"} d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3c3.08 0 5.5 2.42 5.5 5.5 0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
                     </svg>
@@ -93,7 +95,7 @@ export default function CarList() {
                   <p>
                     {vehicle.year} {vehicle.make} {vehicle.model}
                   </p>
-                  <div>
+                  <div>xw
                     <p>Time until Auction:</p>
                     {timeUntilAuction(vehicle.auctionDateTime)}
                   </div>

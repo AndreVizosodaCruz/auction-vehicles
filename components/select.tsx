@@ -9,14 +9,15 @@ interface SelectProps {
   id: string,
   defaultValue: string,
   changeEvent: (e: string) => void,
-  label: string
+  label: string,
+  dataTestId?: string
 }
 
-export default function Select({arr, id, defaultValue, changeEvent, label}: SelectProps) {
+export default function Select({arr, id, defaultValue, changeEvent, label, dataTestId}: SelectProps) {
   return (
     <DivSelect>
       <label htmlFor={id}>{label}</label>
-      <select id={id} defaultValue={defaultValue ?? ''} onChange={(e) => changeEvent(e.target.value)}>
+      <select id={id} defaultValue={defaultValue ?? ''} onChange={(e) => changeEvent(e.target.value)} data-testid={dataTestId}>
         <option value={''}></option>
         {arr.map((item, index) =>
           <option key={index} value={item.value}>{item.label}</option>
