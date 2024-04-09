@@ -95,7 +95,7 @@ export default function CarList() {
                   <p>
                     {vehicle.year} {vehicle.make} {vehicle.model}
                   </p>
-                  <div>xw
+                  <div>
                     <p>Time until Auction:</p>
                     {timeUntilAuction(vehicle.auctionDateTime)}
                   </div>
@@ -149,7 +149,7 @@ function sortCars(cars: VehicleInterface[], sortBy: 'make' | 'startingBid' | 'mi
 };
 
 const Wrapper = styled.div`
-flex: 1;
+  flex: 1;
 `;
 
 const Container = styled.div`

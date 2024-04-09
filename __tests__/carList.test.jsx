@@ -34,10 +34,8 @@ describe('CarList component', () => {
         <CarList />
       </StoreContext.Provider>
     );
-
-    setTimeout(() => {
-      expect(getByTestId('vehicle-card-1')).toBeInTheDocument();
-    }, 100);
+    
+    expect(getByTestId('vehicle-1')).toBeInTheDocument();
 
     fireEvent.change(getByTestId('sorting-dropdown'), { target: { value: 'auctionDate' } });
 
@@ -61,7 +59,7 @@ describe('CarList component', () => {
     }, 100);
 
     fireEvent.click(getByTestId('favorite-button-1'));
-    
+
     setTimeout(() => {
       expect(mockContextValues.setVehicles).toHaveBeenCalledWith([
         { id: 1, make: 'Toyota', model: 'Camry', year: 2020, auctionDateTime: '2024-04-10T10:00:00.000Z', favourite: false },
